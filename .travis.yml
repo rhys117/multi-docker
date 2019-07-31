@@ -21,3 +21,17 @@ after_success:
   - docker push rhys117/multi-nginx
   - docker push rhys117/multi-server
   - docker push rhys117/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-west-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-west-1-4123123123
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
